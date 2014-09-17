@@ -118,12 +118,15 @@ Second, the implementation of the ontology (Section \ref{Implementation-within-E
 Last, registration of the generated ontology document in the Neuroscience Information Framework (NIF) demonstrates searchability of stored data using a unified interface (Section \ref{Registration_within_nif}).
 
 
-\section{Related Work}
+\section{Materials and Methods}
+\label{Materials_and_Methods}
+
+\subsection{Related Work}
 \label{Related_Work}
 
 Several approaches and tools that map a relational schema or an object-oriented code to the Semantic Web or back exist. Some of these approaches exist only as initial proposals or prototypes described in scientific papers, while some of them have been really implemented as available frameworks.
 
-\subsection{Relational Schema and RDF}
+\subsubsection{Relational Schema and RDF}
 \label{Relational_Schema_RDF}
 
 A familiar representation of an RDF fact might be represented as a row in a table in a relational database. This table has two columns, corresponding to the subject and the object of the RDF triple. The name of the table corresponds to the predicate of the RDF triple. In this table each row represents a unique instance of the subject. Such a row has to be decomposed for representation as RDF triples \citep{0123820200, 4811327}.
@@ -133,7 +136,7 @@ to query a non-RDF database using the SparQL \citep{prudhommeaux2008sparql} quer
 
 METAMorphoses \citep{svihla} is a data transformation processor from RDB into RDF that uses the mapping described in the template XML document. The XML template defines a set of mapping rules and queries for obtaining data stored in a relational database.
 
-\subsection{Object-Oriented Model and OWL}
+\subsubsection{Object-Oriented Model and OWL}
 \label{OOM-and-OWL}
 
 \subsubsection{Tool with Common Semantic Expressivity}
@@ -160,10 +163,10 @@ Tested frameworks enrich the input object-oriented code by missing semantics usi
 tools is difficult because it requires a modified compiler and Java interpreter. The limitations of tested frameworks motivate us to provide a proprietary solution that will use common programming features and resolve semantic gaps in maximal range.
 
 
-\section{Systems for Data Modeling}
+\subsection{Systems for Data Modeling}
 \label{Systems for Data Modeling}
 
-\subsection{Common Systems}
+\subsubsection{Common Systems}
 \label{Common_Systems}
 
 Several ways to represent data in electrophysiology exist. The popularity of script-based languages is rising in neuroinformatics \citep{10.3389/neuro.11.014.2009}. Programming languages such as Matlab or Python are easy to use due to, e.g., simple data types, dynamic typing of variables or interpreted compilation. On the other hand, these languages are not suitable for development of large systems \citep{Scott:2004:PGB:1040231.1040267}.
@@ -171,27 +174,27 @@ Several ways to represent data in electrophysiology exist. The popularity of scr
 After analyzing several semantic data models \citep{0720407583, 0126445516}, essentially the following data modeling formalisms are widely used: \emph{the entity-relationship-attribute (ERA)} model and \emph{object-oriented (OO)} model. Newer approaches, e.~g. \emph{Enhanced-entity–-relationship (EER)} model, only combine two approaches discussed above.
 
 
-\subsection{Semantic Web Modeling}
+\subsubsection{Semantic Web Modeling}
 \label{Semantic_Web_Modeling}
 
 Because of the World Wide Web (WWW) contains a large collection of unclassified information, it is extremely difficult to handle this enormous amount of information.
 A promising approach, the Semantic Web \citep{bernerslee2001semantic}, represents web content in a form that is more easily machine-processable. Intelligent techniques deriving semantic relationships are developed by research groups \citep{The-Semantic-Web-ISWC-2002}. When a higher semantic expressivity is required, the semantic relationships have to be added manually.
 
-\subsection{Concepts Discussion}
+\subsubsection{Concepts Discussion}
 \label{Concepts_discussion}
 The concepts based on semantic web languages provide appropriate features to describe data semantics. On the other hand, the Semantic Web languages are not popular for developing application programs \citep{Semantic_Web_Primer}. We believe that we can profit from a combination of both object-oriented and semantic concepts by designing a robust object-oriented system storing data in a relational database. A superstructure that provides semantic description of relationships among data can be implemented using the Semantic Web languages.
 
 
-\section{Mapping Data Models}
+\subsection{Mapping Data Models}
 \label{Mapping_Data_Models}
 
-\subsection{Basic Data Concepts}
+\subsubsection{Basic Data Concepts}
 \label{Data_Concepts}
 The pilar relational databases are entities and their relations; a similar representation exists in object-oriented modeling (OOM).
 
 The Semantic Web expresses data by a triple-oriented language, \emph{Resource Description Framework (RDF)} \citep{wnpx:RDF-PRIMER}. Because expressivity of RDF is limited, W3C\footnote{http://www.w3.org/} defined a more powerful language with more capabilities for expressing meaning and semantics, \emph{Web Ontology Language (OWL)} \citep{jahrynx:Dean:04:OWO}. Three sublanguages of OWL are defined. The most restricted is OWL Lite, while OWL DL is its superset. The largest set of primitives contains OWL Full, which is a superset of both \citep{McGuinness:2004}.
 
-\subsection{Concepts Comparison}
+\subsubsection{Concepts Comparison}
 \label{concepts_comparison}
 
 
@@ -276,10 +279,14 @@ dependency & RDF:property & methods parameters or return value &
 \label{fig:umlowlexample}
 \end{figure}
 
-\section{Semantic Framework}
+
+\section{Methods}
+\label{Methods}
+
+\subsection{Semantic Framework}
 \label{Semantic_Framework}
 
-\subsection{Construction of Ontology}
+\subsubsection{Construction of Ontology}
 \label{Construction-of-ontology}
 
 According to differences in semantic expressivity described in Section \ref{concepts_comparison}, we propose a custom approach that transforms a common object-oriented syntax to an OWL syntax. The proposed solution is usable by software engineers and not only by experts in the Semantic Web field. Thus, a framework based on common programming technologies is preferred.
@@ -308,7 +315,7 @@ are accessed only by get/set methods.}, often called Plain Old Java Object (POJO
 \end{definition}
 
 
-\subsection{Proposed Mapping}
+\subsubsection{Proposed Mapping}
 \label{Proposed_Mapping}
 
 To give Definition \ref{def:JavaBean structure extraction process} practical sense, an example of Java class mapping to an OWL construct is demonstrated.
@@ -472,7 +479,7 @@ We have selected the concepts that have a class and/or property extent \citep{BM
 
 \end{table}
 
-\subsection{Implementation}
+\subsubsection{Implementation}
 \label{Implementation}
 
 The described mapping resulted in a practical implementation in a proprietary solution called the Semantic Framework\footnote{Project repository available at: https://github.com/NEUROINFORMATICS-GROUP-FAV-KIV-ZCU/Semantic-Framework}. It is a library with the input in the form of the set of JavaBeans and the output in the form of an ontology document. We did not implement the Semantic Framework  from scratch but it is based on the existing tools that we modified.  The core of the system is modified JenaBean \citep{citeulike:JenaBean}. JenaBean internally uses the Jena Framework \citep{morningboat:jena16} that is responsible for creation of an internal semantic model.
@@ -501,11 +508,13 @@ Figure \ref{fig:Semantic_Framework} shows the component diagram of the Semantic 
 \label{fig:Semantic_Framework_class_diagram}
 \end{figure}
 
+\section{Results}
+\label{Results}
 
-\section{Performance Evaluation}
+\subsection{Performance Evaluation}
 \label{Performance_evaluation}
 
-\subsection{Experimental Verification}
+\subsubsection{Experimental Verification}
 \label{Experimental_Verification}
 
 We discuss the complexity of the algorithm in a practical scenario. Firstly, we prepared a set of \emph{Experiment} instances. Then, we assigned instances of \emph{Person}, \emph{Scenario}, \emph{Hardware} and \emph{Data} to each experiment. The class \emph{Person} was extended by the set of supported annotations from Table \ref{tab:Java annotations to OWL mapping}. The tests were run ten times and the result was created as an average of partial results.
@@ -520,10 +529,10 @@ The chart in Figure \ref{fig:results} shows the linearity of the transformationa
 \end{figure}
 
 
-\section{Experimental Evaluation}
+\subsection{Experimental Evaluation}
 \label{discussion}
 
-\subsection{Experimental Ontology}
+\subsubsection{Experimental Ontology}
 \label{Experimental_Ontology}
 As experimental data-sharing initiatives continue to expand within the neurophysiological community, the need for descriptive ontology increases. NEMO \citep{DouFRFMT07} is intended as a complex ontology describing EEG, averaged EEG (ERPs), and ERP data analysis results. Even though NEMO is a completely ontology-based approach, the community still uses tools based on common programming technologies. In addition, NEMO seems to be too complex to be immediately deployed in specific electrophysiology domains. Even though NEMO is supposed to be sufficient for describing complexe experimental results it lacks possibilities to describe experimental protocols and restrictions. Facing difficulties with management of experiments obtained within our laboratory, we defined a simpler ontology that precisely describes the domain of EEG/ERP experiments. This ontology is based on experience in our laboratory, scientific papers and books describing EEG/ERP experiments (e. g. \citep{luck}). Semantically, it is a modified subset of NEMO with added specialized items describing an experimental protocol and restrictions during an experimental session. Such an ontology helps with preserving of data sets describing not only experimental results but even a complete experimental process.
 
@@ -543,13 +552,13 @@ the version and the producer, and configuration files if they are used.
 \item Signal artifact - contains information describing a compensation method that prevents formation of artifacts. When a method for removing the formed artifact is used, the description is also placed there. When some artifact totally degrades the signal, the experimenter can define conditions when it is possible to assume the signal is totally useless.
 \end{itemize}
 
-\subsection{Implementation within EEG/ERP Portal}
+\subsubsection{Implementation within EEG/ERP Portal}
 \label{Implementation-within-EEG-ERP-Portal}
 
 The EEG/ERP Portal \citep{ISI:000306821100004} is intended for experimental data-sharing and management. The internal structure of the EEG/ERP portal is designed respecting INCF recommendations \citep{incf-sustainability-report}. Experimental ontology described in Section \ref{Experimental_Ontology} has been developed within the EEG/ERP Portal. The data layer of the Portal is implemented using a relational database (Oracle 11g) and its persistent layer is represented by POJOs. An object-relational mapping (ORM) is ensured by the Hibernate framework \citep{Bauer:2006:JPH:1212283}. The internal structure of the layer is implemented according to the defined ontology. A user who wants to upload a custom experiment into the system fills out a set of predefined forms with metadata. These metadata are input data for the desired ontology.
 
 
-\subsection{Semantic Framework Integration with EEG/ERP Portal}
+\subsubsection{Semantic Framework Integration with EEG/ERP Portal}
 \label{Semantic_Framework_Integration_with_EEG_ERP_Portal}
 
 The EEG/ERP Portal is a tool developed using common programming technologies. If we want to register the EEG/ERP Portal as a recognized data source, we need to transform the internal ontology into the Semantic Web structures. The Semantic Framework developed has been integrated into the EEG/ERP Portal (Figure \ref{fig:Semantic_Framework_Integration_in_EEG_ERP_Portal}). The internal logic\footnote{A Spring MVC is used. It practically implements a Model-View-Controller design pattern.} calls a Semantic Framework API using a built-in timer. This timer calls the Semantic Framework API at regular intervals; the ontology document is stored in a temporary file where this document is immediately available. It ensures a faster response of the system.
@@ -574,7 +583,7 @@ The EEG/ERP Portal is a tool developed using common programming technologies. If
 
 The temporary file is further serialized into a desired syntax. Syntaxes \emph{RDF/XML}, \emph{OWL/XML}, \emph{RDF/XML-ABBREV}, \emph{N-TRIPLE}, \emph{TURTLE}, \emph{N3}, \emph{N3-PP}, \emph{N3-PLAIN}, and \emph{N3-TRIPLE} are currently supported. The \emph{SemanticMultiController} is listening on a specific URL with a \emph{GET} parameter. For instance, when a reasoner visits the URL \emph{http://eegdatabase.kiv.zcu.cz/seman tic/getOntology.html?type=turtle}, it obtains the OWL document in the \emph{turtle} syntax. The UML diagram describing the Semantic module API in the EEG/ERP Portal is shown in Figure \ref{fig:Semantic_Framework_Integration}.
 
-\subsection{Registration within the Neuroscience Information Framework}
+\subsubsection{Registration within the Neuroscience Information Framework}
 \label{Registration_within_nif}
 
 The approach described enables us to generate an experimental ontology from stored experiments. The output ontology is valid according to W3C specification that proves its visualization in Prot\'{e}ge (shown in Figure \ref{fig:visualized_portal_ontology}). To give the ontology a practical sense, we were looking for a suitable authority capable of searching within the ontology.
@@ -597,18 +606,14 @@ We successfully used the Neuroscience Informational Framework (NIF) \citep{NIF-N
 \end{landscape}
 
 
-\section{Future Work}
-\label{Future_Work}
+\section{DISCUSSION}
+\label{DISCUSSION}
 
 Since many limitations of OWL exist, its extension OWL2 has been developed. OWL2 aims are to remove different syntaxes, improve datatype expressivity, provide better organization of imports and remove difficulties with different versions of OWL syntaxes. The next significant step we plan is to start with transformation from the object-oriented code into the OWL2 syntax.
 
 Relational-databases are proving inflexible when structure modifications are required because a fixed schema organized in tables is required. NoSQL databases provide higher scalability and availability than relational databases because they are schema-free. When NoSQL databases have key-value organization, they can easily store RDF triples \citep{Papailiou:2012:HAQ:2187980.2188058}. The big challenge lies in the usage of a NoSQL database for storing experimental metadata. There are initiatives (e.g. \citep{Combining-Relational-and-Semi-structured-Databases-for-an-Inquiry-Application}) that investigate the transformation of a common relational database to a NoSQL database. The use of a NoSQL database for electrophysiology experiments should be considered.
 
 The working group at our department is cooperating on the development of a standardized electrophysiology ontology \citep{OEN}. When this ontology is finished, the metadata layer of the EEG/ERP portal will be modified to correspond to this ontology.
-
-
-\section{Conclusion}
-\label{Conclusion}
 
 The approach presented combines ontology development research with classical software programming. While description of a specific electrophysiological domain with specific ontologies is a promising way to share experimental data among laboratories, the software systems are usually implemented using object-oriented programming languages. In addition, these systems are typically developed by software engineers but not semantic web experts. The crucial task is investigating a bridge between object-oriented systems and ontology-based systems.
 
