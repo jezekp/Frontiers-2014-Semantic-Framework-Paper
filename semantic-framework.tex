@@ -128,47 +128,6 @@ Last, registration of the generated ontology document in the Neuroscience Inform
 \section{Materials and Methods}
 \label{Materials_and_Methods}
 
-\subsection{Related Work}
-\label{Related_Work}
-
-Several approaches and tools that map a relational schema or an object-oriented code to the Semantic Web or back exist. Some of these approaches exist only as initial proposals or prototypes described in scientific papers, while some of them have been really implemented as available frameworks.
-
-\subsubsection{Relational Schema and RDF}
-\label{Relational_Schema_RDF}
-
-A familiar representation of an RDF fact might be represented as a row in a table in a relational database. This table has two columns, corresponding to the subject and the object of the RDF triple. The name of the table corresponds to the predicate of the RDF triple. In this table each row represents a unique instance of the subject. Such a row has to be decomposed for representation as RDF triples \citep{0123820200, 4811327}.
-
-The D2RQ \citep{efeliksik:bizer2004d2rq} is a framework that uses declarative language to describe mappings between relational database schema and RDF. The D2RQ Platform provides possibilities
-to query a non-RDF database using the SparQL \citep{prudhommeaux2008sparql} query language, to access information in a non-RDF database using the Jena API or the Sesame API \citep{sryll:conf/iswc02/sesame}.
-
-METAMorphoses \citep{svihla} is a data transformation processor from RDB into RDF that uses the mapping described in the template XML document. The XML template defines a set of mapping rules and queries for obtaining data stored in a relational database.
-
-\subsubsection{Object-Oriented Model and OWL}
-\label{OOM-and-OWL}
-
-\subsubsection{Tool with Common Semantic Expressivity}
-\label{Tools_With_Common_Semantic_Expressivity}
-
-We tested several approaches that provided limited possibilities to map common syntaxes of an object-oriented code to an OWL representation. These tools map fundamental OWL features. This means that only the basic semantic expressivity of OWL is used. Mapping of OWL classes to Java Interfaces is described in \citep{sryll:conf/seke04/owl-mapping}. Mapping a Java Interface instead of a common Java class enables the expression of the multiple inheritance of OWL properties. Back transformation is described in \citep{Koide_owlvs.}, where the OWL processor SWCLOS3, which is at the top of the Common Lisp Object System (CLOS), is described. Whereas CLOS allows lisp programmers to develop Object-Oriented systems, SWCLOSS allows programmers to construct domain and task ontologies in software application fields.
-
-Java2OWL-S \citep{DBLP:conf/ic3k/Ohlbach12} is a tool which is able to generate OWL directly. It uses two transformations. The first transformation is from JavaBeans into WSDL (Web Service Description Language). The input of this transformation is formed by a Java class and the output is a temporary WSDL file. The second transformation generates OWL from the WSDL file.
-
-\subsubsection{Tool with Additional Semantic Expressivity}
-\label{Tools_With_Additional_Semantic_Expressivity}
-
-
-Concerning one-side transformations, the tools described in \ref{Tools_With_Common_Semantic_Expressivity} work quite satisfactorily because object-oriented code has poorer semantics than OWL. However, in these tools, no possibility to enrich the object-oriented code with missing semantics exists.
-
-The ActiceRDF \citep{ActiveRDF} is a library for accessing RDF data from Ruby programs. It provides a domain-specific language for RDF models; it can address
-RDF resources, classes and properties programmatically. When a dynamic interpreted language is used, data types are evaluated in runtime, so they can be changed dynamically.
-
-The Semantic Object Framework (SOF) \citep{SOF} utilizes embedded comments in source codes to describe semantic relationships between classes and attributes.
-
-The eClass \citep{Web-Information-Representation} is a solution that changes Java syntax to embed semantic descriptions into the source code.
-
-Tested frameworks enrich the input object-oriented code by missing semantics using either embedded comments or changing the JavaBean syntax. The usage of such
-tools is difficult because it requires a modified compiler and Java interpreter. The limitations of tested frameworks motivate us to provide a proprietary solution that will use common programming features and resolve semantic gaps in maximal range.
-
 
 \subsection{Systems for Data Modeling}
 \label{Systems for Data Modeling}
@@ -285,6 +244,42 @@ dependency & RDF:property & methods parameters or return value &
 \caption{Practical Examples of Compared OWL and UML Features.}
 \label{fig:umlowlexample}
 \end{figure}
+
+
+
+\subsection{Related Work}
+\label{Related_Work}
+
+Several approaches and tools that map a relational schema or an object-oriented code to the Semantic Web or back exist. Some of these approaches exist only as initial proposals or prototypes described in scientific papers, while some of them have been really implemented as available frameworks.
+
+\subsubsection{Relational Schema and RDF}
+\label{Relational_Schema_RDF}
+
+A familiar representation of an RDF fact might be represented as a row in a table in a relational database. This table has two columns, corresponding to the subject and the object of the RDF triple. The name of the table corresponds to the predicate of the RDF triple. In this table each row represents a unique instance of the subject. Such a row has to be decomposed for representation as RDF triples \citep{0123820200, 4811327}.
+
+The D2RQ \citep{efeliksik:bizer2004d2rq} is a framework that uses declarative language to describe mappings between relational database schema and RDF. The D2RQ Platform provides possibilities
+to query a non-RDF database using the SparQL \citep{prudhommeaux2008sparql} query language, to access information in a non-RDF database using the Jena API or the Sesame API \citep{sryll:conf/iswc02/sesame}.
+
+METAMorphoses \citep{svihla} is a data transformation processor from RDB into RDF that uses the mapping described in the template XML document. The XML template defines a set of mapping rules and queries for obtaining data stored in a relational database.
+
+\subsubsection{Object-Oriented Model and OWL}
+\label{OOM-and-OWL}
+
+We tested several approaches that provided limited possibilities to map common syntaxes of an object-oriented code to an OWL representation. These tools map fundamental OWL features. This means that only the basic semantic expressivity of OWL is used. Mapping of OWL classes to Java Interfaces is described in \citep{sryll:conf/seke04/owl-mapping}. Mapping a Java Interface instead of a common Java class enables the expression of the multiple inheritance of OWL properties. Back transformation is described in \citep{Koide_owlvs.}, where the OWL processor SWCLOS3, which is at the top of the Common Lisp Object System (CLOS), is described. Whereas CLOS allows lisp programmers to develop Object-Oriented systems, SWCLOSS allows programmers to construct domain and task ontologies in software application fields.
+
+Java2OWL-S \citep{DBLP:conf/ic3k/Ohlbach12} is a tool which is able to generate OWL directly. It uses two transformations. The first transformation is from JavaBeans into WSDL (Web Service Description Language). The input of this transformation is formed by a Java class and the output is a temporary WSDL file. The second transformation generates OWL from the WSDL file.
+
+Concerning one-side transformations, the tools with common semantic expressivity work quite satisfactorily because object-oriented code has poorer semantics than OWL. However, in these tools, no possibility to enrich the object-oriented code with missing semantics exists.
+
+The ActiceRDF \citep{ActiveRDF} is a library for accessing RDF data from Ruby programs. It provides a domain-specific language for RDF models; it can address
+RDF resources, classes and properties programmatically. When a dynamic interpreted language is used, data types are evaluated in runtime, so they can be changed dynamically.
+
+The Semantic Object Framework (SOF) \citep{SOF} utilizes embedded comments in source codes to describe semantic relationships between classes and attributes.
+
+The eClass \citep{Web-Information-Representation} is a solution that changes Java syntax to embed semantic descriptions into the source code.
+
+Tested frameworks enrich the input object-oriented code by missing semantics using either embedded comments or changing the JavaBean syntax. The usage of such
+tools is difficult because it requires a modified compiler and Java interpreter. The limitations of tested frameworks motivate us to provide a proprietary solution that will use common programming features and resolve semantic gaps in maximal range.
 
 
 \section{Results}
