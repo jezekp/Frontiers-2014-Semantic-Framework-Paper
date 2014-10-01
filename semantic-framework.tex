@@ -263,8 +263,6 @@ Taken into account differences in semantic expressivity described in Section~\re
 %\subsubsection{Proposed Mapping}
 %\label{Proposed_Mapping}
 
-To give Definition \ref{def:JavaBean structure extraction process} practical sense, an example of Java class mapping to an OWL construct is demonstrated.
-
 An example of a mapping of a Java class to an OWL construct is shown in Listing~\ref{Java_class_property_Definition}. The Java class \emph{Experiment} has two attributes, \emph{testedSubject} and \emph{experimentId}. The first one is an association relation to the \emph{Person} class, while the second one is an atomic type. Get/set methods are omitted to keep readability. Listing \ref{OWL_individual_Instance} shows a fundamental serialization of this class into an OWL structure. When a sample instance of a described class with assigned sample values \emph{testedSubject=John Smith} and \emph{experimentId=21} is created, its representation is transformed to an \emph{OWL individual}. The serialization of \emph{DataTypeProperty} is straightforward, the property value is directly serialized. The serialization of \emph{ObjectProperty} is solved by serializing an object id value or by placing a link that points to the data in the case of binary files.
 
 \begin{lstlisting}[label=Java_class_property_Definition,caption=Java Class]
