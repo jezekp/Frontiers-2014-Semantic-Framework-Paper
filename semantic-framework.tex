@@ -51,10 +51,11 @@
 \def\articleType{Research Article}
 \def\keyFont{\fontsize{8}{11}\helveticabold }
 \def\firstAuthorLast{Je\v{z}ek {et~al.}} %use et al only if is more than 1 author
-\def\Authors{Petr Je\v{z}ek\,$^{1,*}$, Roman Mou\v{c}ek\,$^{2}$}
+\def\Authors{Petr Je\v{z}ek\,$^{1,2,*}$, Roman Mou\v{c}ek\,$^{1,2}$}
 % Affiliations should be keyed to the author's name with superscript numbers and be listed as follows: Laboratory, Institute, Department, Organization, City, State abbreviation (USA, Canada, Australia), and Country (without detailed address information such as city zip codes or street names).
 % If one of the authors has a change of address, list the new address below the correspondence details using a superscript symbol and use the same symbol to indicate the author in the author list.
-\def\Address{$^{1,2}$New Technologies for the Information Society, Department of Computer Science and Engineering, University of West Bohemia, Plze\v{n} Czech Republic}
+\def\Address{$^{1}$Faculty of Applied Sciences, New Technologies for the Information Society, University of West Bohemia, Plze\v{n}, Czech Republic \\
+$^{2}$Faculty of Applied Sciences, Department of Computer Science and Engineering, University of West Bohemia, Plze\v{n}, Czech Republic}
 % The Corresponding Author should be marked with an asterisk
 % Provide the exact contact address (this time including street name and city zip code) and email of the corresponding author
 \def\corrAuthor{Petr Je\v{z}ek}
@@ -537,19 +538,17 @@ The generated OWL documents are typically used when registering the EEG/ERP Port
 \section{DISCUSSION}
 \label{DISCUSSION}
 
-This article described the possible approaches to the semantic enrichment of structured electrophysiology data. Different views of web engineering and knowledge representation communities on data modelling, necessary scope of semantic descriptions, and used languages and technologies were briefly introduced. The Semantic Web has become (after 13 years of its existence) a certain connection between these communities. Currently, the real benefits of the Semantic Web can be found in the concept of linked data that is already technologically well supported. However, in general the Semantic Web technologies are not mature, often computationally demanding and the community of developers and administrators who would develop/maintain/administrate them is significantly smaller then communities interested in "conventional" programming languages and tools. On the other hand, it is worthwhile to use and promote the Semantic Web languages, standards and technologies that can bring to the real neuroinformatics applications the opportunity to use their higher semantic expressivity. 
+This article described the possible approaches to the semantic enrichment of structured electrophysiology data. Different views of web engineering and knowledge representation communities on data modelling, necessary scope of semantic descriptions, and used languages and technologies were briefly introduced. The Semantic Web has become (after 13 years of its existence) a certain connection between these communities. Currently, the real benefits of the Semantic Web can be found in the concept of linked data that is already technologically well supported. However, in general the Semantic Web technologies are not mature, often computationally demanding and the community of developers and administrators who would develop/maintain/administrate them is significantly smaller then communities interested in "conventional" programming languages and tools. On the other hand, it is worthwhile to use and promote the Semantic Web languages, standards and technologies that can bring to the real neuroinformatics applications the opportunity to use their higher semantic expressivity.
 
 Based on these assumptions we developed a~software prototype, the Semantic Framework library, that connect conventional technologies and programming tools (relational database, domain-independent Java-based systems) with the languages and technologies of the Semantic Web (RDF, OWL, JenaBean, Jena, OWL API). The most important contribution is a transformational mechanism that maps common JavaBeans accessing data stored in a~relational database into OWL individuals. In addition, the semantic diversity that exists due to the different semantic expressivity of the object-oriented model and the Semantic Web languages was partly addressed using a custom annotation-based approach. Java annotations are enriched by additional semantic constructions that are also transformed to the resulting OWL ontology document. This approach using annotations replaces the traditional modeling of ontologies in an~ontological language. The Semantic Framework was integrated in the EEG/ERP Portal and enabled dynamic generation of the output ontology document. This document is used by the Neuroscience Information Framework to provide a~content of the EEG/ERP Portal through its interface.
 
 Although it is difficult to predict the future development of the Semantic Web, at least it can be expected that new proposals for standards will appear and the software tools that will be developed become more mature and stable. These predictions concerning the future development of the Semantic Web (and standards and tools for semantic descriptions in general) are important for our decisions regarding the development of the EEG/ERP Portal and the Semantic Framework itself.
 
-One of the possible challenges is replacement of the relational database with a~NoSQl database for storing experimental metadata. Relational-databases are inflexible when structure modifications are required, while NoSQL databases provide higher scalability and availability because of their free schema. NoSQL databases having key-value organization can easily store RDF triples~\citep{Papailiou:2012:HAQ:2187980.2188058}. There are initiatives (e.g.~\citep{Combining-Relational-and-Semi-structured-Databases-for-an-Inquiry-Application}) that investigate the transformation of a~common relational database to a~NoSQL database. Currently we replaced a~part of the relational database for the NoSQL database ElasticSearch. 
+One of the possible challenges is replacement of the relational database with a~NoSQl database for storing experimental metadata. Relational-databases are inflexible when structure modifications are required, while NoSQL databases provide higher scalability and availability because of their free schema. NoSQL databases having key-value organization can easily store RDF triples~\citep{Papailiou:2012:HAQ:2187980.2188058}. There are initiatives (e.g.~\citep{Combining-Relational-and-Semi-structured-Databases-for-an-Inquiry-Application}) that investigate the transformation of a~common relational database to a~NoSQL database. Currently we replaced a~part of the relational database for the NoSQL database ElasticSearch.
 
-Another challenge is to integrate standardized data and metadata structures into... The working group at our department is cooperating on the development of a standardized electrophysiology ontology \citep{OEN}. When this ontology is finished, the metadata layer of the EEG/ERP portal will be modified to correspond to this ontology.
+Another challenge is to integrate a~standardized data format and metadata structures into the EEG/ERP Portal. We participate in these standardization activities within INCF Electrophysiology Task Force and within the group developing an~experimental ontology for neurophysiology~\citep{OEN}. Even the partial outcomes of these groups are continuously integrated into the EEG/ERP Portal. 
 
-
-
-Although the presented approach was demonstrated and validated on the electrophysiology domain the mapping mechanism implemented in the Semantic framework is not bound with this domain. It can be used in domain-independent systems.
+Although the presented approach was used and tested in the electrophysiology domain, the mapping mechanism implemented in the Semantic Framework can be easily applied to other domains. 
 
 \section{\uppercase{Acknowledgements}}\label{acknowledgements}
 
@@ -563,5 +562,4 @@ This work was supported by the European Regional Development Fund (ERDF), Projec
 \bibliographystyle{frontiersinSCNS&ENG} % for Science and Engineering articles
 %\bibliographystyle{frontiersinMED} % for Medicine articles
 \bibliography{semantic-framework}
-
 \end{document}
