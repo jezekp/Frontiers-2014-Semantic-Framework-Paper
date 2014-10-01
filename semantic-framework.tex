@@ -458,16 +458,14 @@ The described mapping was implemented as a library named the Semantic Framework\
 %\subsubsection{Experimental Verification}
 %\label{Experimental_Verification}
 
-The time complexity of the Semantic Framework was tested in the following way. Firstly, we prepared a set of instances of the class \emph{Experiment}. Then, we assigned instances of the classes \emph{Person}, \emph{Scenario}, \emph{Hardware} and \emph{Data} to each experiment. The class \emph{Person} was extended by the set of supported annotations from Table~\ref{tab:Java annotations to OWL mapping}. The performance tests were run ten times and the result was calculated as an average of all program runs.
+The time complexity of the Semantic Framework was tested in the following way. Firstly, we prepared a set of instances of the class \emph{Experiment}. Then, we assigned instances of the classes \emph{Person}, \emph{Scenario}, \emph{Hardware} and \emph{Data} to each experiment. The class \emph{Person} was extended by the set of supported annotations from Table~\ref{tab:Java annotations to OWL mapping}. The performance tests were run ten times and the result was calculated as an average of all program runs. The time complexity of the transformational process is linear with respect to the number of instances. The tested syntaxes are functionally equivalent; they differ only in the format of the serialized output document~\citep{Wurlitzer:Beckett:04:RSS}.
 
-The chart in Figure~\ref{fig:results} shows that the time complexity of the transformational process is linear with respect to the number of instances. The tested syntaxes are functionally equivalent; they differ only in the format of the serialized output document~\citep{Wurlitzer:Beckett:04:RSS}.
-
-\begin{figure}
+%\begin{figure}
   \includegraphics[width=18cm]{result}
 % figure caption is below the figure
-\caption{Time complexity of the transformation with respect to the number of objects for supported syntaxes. The time complexity is fundamentally linear for each syntax, the transformation process is directly dependent only on the number of input objects.}
-\label{fig:results}
-\end{figure}
+%\caption{Time complexity of the transformation with respect to the number of objects for supported syntaxes. The time complexity is fundamentally linear for each syntax, the transformation process is directly dependent only on the number of input objects.}
+%\label{fig:results}
+%\end{figure}
 
 \subsection{Experimental Evaluation}
 \label{experimental_evaluation}
