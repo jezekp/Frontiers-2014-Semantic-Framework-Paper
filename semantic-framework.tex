@@ -489,15 +489,15 @@ We defined a simple ontology that describes the experimental work in our laborat
 \item Signal artifact - contains information describing a compensation method that prevents formation of artifacts. When a method for removing artifacts is used, its description is also placed there. When some artifact totally degrades the signal, the experimenter can define conditions when it is possible to assume that the signal is totally useless.
 \end{itemize}
 
-This ontology was built within the development of the EEG/ERP Portal~\citep{ISI:000306821100004}, a~web application for the storage, long-term management and sharing of electrophysiology data. The data layer of the Portal is implemented using a relational database (Oracle 11g) and POJOs. An object-relational mapping (ORM) is ensured by the Hibernate framework~\citep{Bauer:2006:JPH:1212283}. The internal structure (classes and their relationships, annotations) of the data layer is implemented according to the defined ontology. Upload of data and metadata is ensured via a set of predefined web forms. If we want to register the EEG/ERP Portal as a recognized data source, we need to transform the internal ontology into the Semantic Web structures. The Semantic Framework was integrated into the EEG/ERP Portal (Figure \ref{fig:Semantic_Framework_Integration_in_EEG_ERP_Portal}). The internal logic\footnote{A Spring MVC is used. It practically implements a Model-View-Controller design pattern.} calls a Semantic Framework API using a built-in timer. This timer calls the Semantic Framework API at regular intervals; the ontology document is stored in a temporary file where this document is immediately available. It ensures a faster response of the system.
+This ontology was built within the development of the EEG/ERP Portal~\citep{ISI:000306821100004}, a~web application for the storage, long-term management and sharing of electrophysiology data. The data layer of the Portal is implemented using a relational database (Oracle 11g) and POJOs. An object-relational mapping (ORM) is ensured by the Hibernate framework~\citep{Bauer:2006:JPH:1212283}. The internal structure (classes and their relationships, annotations) of the data layer is implemented according to the defined ontology. The application layer was developed using the Spring Framework; the presentation layer uses Apache Wicket. Upload of data and metadata is ensured via a set of predefined web forms.
+
+The Semantic Framework was integrated into the EEG/ERP Portal (Figure~\ref{fig:Semantic_Framework_Integration_in_EEG_ERP_Portal}). The internal logic\footnote{Spring MVC is used. It practically implements a Model-View-Controller design pattern.} calls a Semantic Framework API (the UML diagram describing the Semantic module API in the EEG/ERP Portal is shown in Figure~\ref{fig:Semantic_Framework_Integration}) using a built-in timer at regular intervals; the ontology document is stored in a temporary file that is further serialized into a~required syntax. Syntaxes \emph{RDF/XML}, \emph{OWL/XML}, \emph{RDF/XML-ABBREV}, \emph{N-TRIPLE}, \emph{TURTLE}, \emph{N3}, \emph{N3-PP}, \emph{N3-PLAIN}, and \emph{N3-TRIPLE} are currently supported. The \emph{SemanticMultiController} is listening on a specific URL with a \emph{GET} parameter. For instance, when a reasoner visits the URL \emph{http://eegdatabase.kiv.zcu.cz/seman tic/getOntology.html?type=turtle}, it obtains the OWL document in the \emph{turtle} syntax. Thus this approach enables us to generate an experimental ontology from stored experiments. The output ontology document is valid according to W3C specification. It can be proved by its visualization in Prot\'{e}ge (shown in Figure~\ref{fig:visualized_portal_ontology}).
 
 %\subsubsection{Implementation within EEG/ERP Portal}
 %\label{Implementation-within-EEG-ERP-Portal}
 
 %\subsubsection{Semantic Framework Integration with EEG/ERP Portal}
 %\label{Semantic_Framework_Integration_with_EEG_ERP_Portal}
-
-
 
 \begin{figure}
 \center
@@ -509,30 +509,26 @@ This ontology was built within the development of the EEG/ERP Portal~\citep{ISI:
 \begin{figure}
 \center
   \includegraphics[width=17cm]{SF_integration}
-\caption{Semantic Framework Integration. A user (OWL reasoner) calls the \emph{SemanticMulticontroller}. This controller has two methods, \emph{getOntology} and \emph{getOntologyOwlApi}. These methods have one input parameter \emph{type} representing a required output syntax. The Semantic Framework is called through \emph{SemanticFactory} Interface.}
+\caption{Semantic Framework Integration. A user (e.g. OWL reasoner) calls the \emph{SemanticMulticontroller}. This controller has two methods, \emph{getOntology} and \emph{getOntologyOwlApi}. A~required output syntax is passed to the methods as a part of the HttpServletRequest parameter. The Semantic Framework is called through the \emph{SemanticFactory} Interface.}
 \label{fig:Semantic_Framework_Integration}
 \end{figure}
 
-The temporary file is further serialized into a desired syntax. Syntaxes \emph{RDF/XML}, \emph{OWL/XML}, \emph{RDF/XML-ABBREV}, \emph{N-TRIPLE}, \emph{TURTLE}, \emph{N3}, \emph{N3-PP}, \emph{N3-PLAIN}, and \emph{N3-TRIPLE} are currently supported. The \emph{SemanticMultiController} is listening on a specific URL with a \emph{GET} parameter. For instance, when a reasoner visits the URL \emph{http://eegdatabase.kiv.zcu.cz/seman tic/getOntology.html?type=turtle}, it obtains the OWL document in the \emph{turtle} syntax. The UML diagram describing the Semantic module API in the EEG/ERP Portal is shown in Figure \ref{fig:Semantic_Framework_Integration}.
+%\subsubsection{Registration within the Neuroscience Information Framework}
+%\label{Registration_within_nif}
 
-\subsubsection{Registration within the Neuroscience Information Framework}
-\label{Registration_within_nif}
-
-The approach described enables us to generate an experimental ontology from stored experiments. The output ontology is valid according to W3C specification that proves its visualization in Prot\'{e}ge (shown in Figure \ref{fig:visualized_portal_ontology}). To give the ontology a practical sense, we were looking for a suitable authority capable of searching within the ontology.
-
-We successfully used the Neuroscience Informational Framework (NIF) \citep{NIF-Neuroinformatics}. The NIF provides a unified interface for accessing neurophysiological data through resources described by ontology web languages \citep{springerlink:10.1007/s12021-008-9033-y}. NIF uses the proprietary framework \emph{DISCO} \citep{Marenco2010}. It is an XML-based script containing a static description of the registered resource. The dynamic content is accessed through a generated ontology. The structure of metadata instances is stored in an \emph{Interoperability XML} file that is a part of the DISCO protocol. The Interoperability file is stored in the root directory of the EEG/ERP Portal together with generated DISCO files. The NIF reloads it at regular intervals. It enables dynamic access to the dynamic content of the EEG/ERP Portal. Figure \ref{fig:NIF_registry_preview} shows experiments listed through the NIF registry. Currently more then 100 experiments are available and new ones are gradually being added.
+The generated OWL documents are typically used when registering the EEG/ERP Portal with other providers of neuroinformatics services. We successfully used the Neuroscience Informational Framework (NIF)~\citep{NIF-Neuroinformatics}. The NIF framework provides a unified interface for accessing neurophysiological data through resources described by ontology web languages \citep{springerlink:10.1007/s12021-008-9033-y}. NIF uses a~proprietary framework \emph{DISCO} \citep{Marenco2010}. It is an XML-based script containing a static description of the registered resource. The dynamic content is accessed through a generated ontology. The structure of metadata instances is stored in an \emph{Interoperability XML} file that is a part of the DISCO protocol. The interoperability file is stored in the root directory of the EEG/ERP Portal together with generated DISCO files. The NIF framework reloads it at regular intervals. It enables dynamic access to the content of the EEG/ERP Portal. Figure \ref{fig:NIF_registry_preview} shows experiments listed through the NIF registry. Currently more then 100 experiments are available in the NIF registry and new ones are gradually being added.
 
 \begin{figure}
 \center
   \includegraphics[width=17.5cm]{protege_loaded_ontology}
-\caption{Prot\'{e}ge Visualization. The left column shows ontology classes. All classes are subclasses of a superclass \emph{Thing}. The right upper window shows the marked class \emph{Person} and its instances are in the bottom window. The middle window on the right side shows descriptions of annotations transformed from enriched JavaBean. \emph{A Comment} with the value  \emph{"Persons registered in the EEG/ERP Portal"}, and a \emph{label} with the value \emph{"Person"} together with its language mutation are defined in this illustrative example. The class contains an \emph{EquivalentClass} with the value \emph{"TestedSubject"} and a set of restrictions. They define that \emph{DateOfBirth} is present exactly once, the attribute \emph{firstname} is a literal from a list of \emph{given names} and each person is a member of at least one research group.}
+\caption{Prot\'{e}ge Visualization. The left column shows ontology classes. All classes are subclasses of a superclass \emph{Thing}. The right window shows the marked class \emph{Person}, the class annotations transformed from the enriched JavaBean (e.g. \emph{Comment} or \emph{EquivalentClass}), properties annotations transformed from the enriched JavaBean (e.g. \emph{researchGroup} - each person is a member of at least one research group} and class instances.
 \label{fig:visualized_portal_ontology}
 \end{figure}
 
 \begin{landscape}
 \begin{figure}
   \includegraphics[width=22cm]{nif_preview}
-\caption{EEG/ERP Portal in the NIF Registry. The list of experiments stored in the EEG/ERP Portal is shown in the NIF registry at link \protect\url{https://www.neuinfo.org/mynif/search.php?q=eegbase&t=indexable&list=cover&nif=nif-0000-08190-1}. The list contains direct hyperlinks to the experiments stored in the EEG/ERP Portal. When a user click's on a hyperlink, he/she is redirected to the EEG/ERP Portal.}
+\caption{EEG/ERP Portal in the NIF Registry. The list of experiments stored in the EEG/ERP Portal is shown in the NIF registry at link \protect\url{https://www.neuinfo.org/mynif/search.php?q=eegbase&t=indexable&list=cover&nif=nif-0000-08190-1}. The list contains direct hyperlinks to the experiments stored in the EEG/ERP Portal. When a user clicks on a hyperlink, he/she is redirected to the EEG/ERP Portal.}
 \label{fig:NIF_registry_preview}
 \end{figure}
 \end{landscape}
