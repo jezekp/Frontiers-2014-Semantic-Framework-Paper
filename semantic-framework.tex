@@ -262,37 +262,51 @@ Taken into account differences in semantic expressivity described in Section~\re
 %\subsubsection{Proposed Mapping}
 %\label{Proposed_Mapping}
 
-An example of a mapping of a Java class to an OWL construct is shown in Listing~\ref{Java_class_property_Definition}. The Java class \emph{Experiment} has two attributes, \emph{testedSubject} and \emph{experimentId}. The first one is an association relation to the \emph{Person} class, while the second one is an atomic type. Get/set methods are omitted to keep readability. Listing~\ref{OWL_individual_Instance} shows a fundamental serialization of this class into an OWL structure. When a sample instance of a described class with assigned sample values \emph{testedSubject=John Smith} and \emph{experimentId=21} is created, its representation is transformed to an \emph{OWL individual}. The serialization of \emph{DataTypeProperty} is straightforward, the property value is directly serialized. The serialization of \emph{ObjectProperty} is solved by serializing an object id value or by placing a link that points to the data in the case of binary files.
+An example of a mapping of a Java class to an OWL construct is shown in Listing~\ref{Java_class_property_Definition}. The Java class \emph{Person} has two attributes, \emph{researchGroups} and \emph{firstname}. The first one is an association relation to the \emph{ResearchGroup} class, while the second one is an atomic type. Get/set methods are omitted to keep readability. Listing~\ref{OWL_individual_Instance} shows a fundamental serialization of this class into an OWL structure. The \emph{firstname} is serialized to a \emph{DataTypeProperty} while researchGroups are serialized to an \emph{ObjectProperty}.
 
 \begin{lstlisting}[label=Java_class_property_Definition,caption=Java Class]
 package cz.zcu.kiv;
 
-public class Experiment {
-
- private Person testedSubject;
- private int experimentId;
-}
+public class Person {
+    @Id
+    private int id;
+    private String firstname;
+    private List<ResearchGroup> researchGroups;
+}    
 
 \end{lstlisting}
 
 \begin{lstlisting}[label=OWL_individual_Instance,caption=OWL Individual Instance]
 
-<cz.zcu.kiv:Experiment rdf:about=
-  "http://cz.zcu.kiv#Experiment_21">
-  <cz.zcu.kiv:testedSubject>
-    <cz.zcu.kiv:Person rdf:about=
-      "http://cz.zcu.kiv#Person_511991">
-      <cz.zcu.kiv:name rdf:datatype=
-        "http://www.w3.org/2001/XMLSchema#string">
-        John Smith
-      </j.1:name>
-    </cz.zcu.kiv:Person>
-  </cz.zcu.kiv:testedSubject>
-  <cz.zcu.kiv:experimentId rdf:datatype=
-    "http://www.w3.org/2001/XMLSchema#int">
-    21
-  </cz.zcu.kiv:experimentId>
-</cz.zcu.kiv:Experiment>
+  <owl:Class rdf:ID="Person">
+    <semantic:javaclass>cz.zcu.kiv.Person</semantic:javaclass>
+  </owl:Class>
+
+  <owl:Class rdf:ID="ResearchGroup">
+    <semantic:javaclass>cz.zcu.kiv.ResearchGroup</semantic:javaclass>
+  </owl:Class>
+  
+  <owl:ObjectProperty rdf:ID="testedSubject">
+    <rdfs:domain rdf:resource="&this;Experiment"/>
+    <rdfs:range rdf:resource="&this;Person"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="researchGroups">
+    <rdfs:domain rdf:resource="&this;Person"/>
+    <rdfs:range rdf:resource="&this;ResearchGroup"/>
+  </owl:ObjectProperty>
+  
+  <owl:DatatypeProperty rdf:ID="firstname">
+    <rdfs:domain rdf:resource="&this;Person"/>
+    <rdfs:range rdf:resource="&xsd;string"/>
+  </owl:DatatypeProperty>
+  
+  <owl:DatatypeProperty rdf:ID="id">
+    <rdfs:domain rdf:resource="&this;Person"/>
+    <rdfs:range rdf:resource="&xsd;integer"/>
+  </owl:DatatypeProperty>
+ 
+
 \end{lstlisting}
 
 Although the described mapping works quite satisfactorily, OWL concepts described in Section~\ref{Conventions} are not covered. When we want to use more capabilities of OWL, we have to enrich the object-oriented code with missing semantics. Looking for a suitable way to extend a current object-oriented code, we decided to extend a proposed preliminary idea~\citep{conf/iceis/JezekM11} based on using Java Annotations~\citep{JavaTutorialAnnotations}.
@@ -313,44 +327,77 @@ The theoretical extraction of JavaBeans annotations and their transformations to
 
 \end{definition}
 
-An example of using two annotations is given in Listing~\ref{Annotated_Java_Bean_Example}. The class Experiment has an attribute testedPerson as defined in Listing~\ref{Java_class_property_Definition}. The first annotation defines the class Experiment as an~\emph{equivalent class} to the class Measurement. The second annotation defines the testedPerson property as an \emph{equivalent property} to the testedSubject property. The serialization of this JavaBean is shown in Listing~\ref{Annotated_Java_Bean_OWL_Serialization}.
+An example of using annotations is given in Listing~\ref{Annotated_Java_Bean_Example}. The class \emph{Person} has attributes firstname and researchGroups as defined in Listing~\ref{Java_class_property_Definition}. Moreover an attribute dateofBirth has been added. The firstname attribute is defined as a value from \emph{GivenNames} by a \emph{@SomeValuesFrom} annotation. Next, dateofBirth and researchGroup have been defined as attributes with the cardinality exactly 1 for dateOfBirth and minimal 1 for researchGroups. In addition, the Person class has been defined as equivalent to a \emph{TestedSubject} class. The serialization of this JavaBean is shown in Listing~\ref{Annotated_Java_Bean_OWL_Serialization}. Now the Person class is a sublcass of \emph{owl:cardinality}, \emph{owl:equivalentClass}, \emph{owl:someValuesFrom} and \emph{owl:cardinality} owl restrictions.
 
 \begin{lstlisting}[label=Annotated_Java_Bean_Example,caption=Annotated Java Bean Example]
 package cz.zcu.kiv;
 
-@EquivalentClass
-  ("http://cz.zcu.kiv/Measurement")
-public class Experiment {
+@EquivalentClass("http://cz.zcu.kiv/TestedSubject")
+public class Person {
+    @Id
+    private int id;
 
-  @EquivalentProperty
-    ("http://cz.zcu.kiv/TestedSubject")
-  private Person testedPerson;
+    @SomeValuesFrom(stringValues = "http://cz.zcu.kiv/GivenNames")
+    private String firstname;
+
+    @Cardinality(1)
+    private Date dateofBirth;
+
+    @MinCardinality(1)
+    private List<ResearchGroup> researchGroups;
 }
+
 \end{lstlisting}
 
 
 \begin{lstlisting}[label=Annotated_Java_Bean_OWL_Serialization,caption=Annotated Java Bean OWL Serialization, escapechar=@]
-<owl:Class rdf:about=
-  "http://cz.zcu.kiv/Measurement"/>
-<owl:Class rdf:about=
-  "http://cz.zcu.kiv#Experiment">
- @\textbf{
- $<$owl:equivalentClass rdf:resource= }@
- @\textbf{    "http://cz.zcu.kiv/Measurement"/$>$
-    }@
-</owl:Clas>
-<owl:ObjectProperty rdf:about=
-  "http://cz.zcu.kiv#testedPerson">
-@\textbf{
-  $<$owl:equivalentProperty rdf:resource=  }@
-@\textbf{    "http://cz.zcu.kiv/TestedSubject"/$>$
-  }@
-  <rdfs:domain rdf:resource=
-   "http://cz.zcu.kiv#Experiment"/>
-</owl:ObjectProperty>
+<owl:Class rdf:ID="Person">
+    <owl:equivalentClass>
+      <owl:Class rdf:about="http://cz.zcu.kiv/TestedSubject"/>
+    </owl:equivalentClass>
+    
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="&xsd;int">1</owl:cardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="dateofBirth"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:DataRange>
+            <owl:oneOf rdf:parseType="Resource">
+              <rdf:rest rdf:resource="&rdf;nil"/>
+              <rdf:first rdf:datatype="&xsd;string">
+                http://cz.zcu.kiv/GivenNames
+              </rdf:first>
+            </owl:oneOf>
+          </owl:DataRange>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="firstname"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:minCardinality rdf:datatype="&xsd;int">1</owl:minCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="researchGroups"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <semantic:javaclass>cz.zcu.kiv.Person</semantic:javaclass>
+  </owl:Class>
 \end{lstlisting}
 
 We selected the concepts that have a~class and/or property extent~\citep{BMEI_jezek_moucek} and defined a~set of annotations with their mapping to corresponding OWL constructs (Table \ref{tab:Java annotations to OWL mapping}. Most of the proposed annotations are parameterizable; parameter values shown in Table~\ref{tab:Java annotations to OWL mapping} are examples; they can be changed according to the needs of a specific domain.
+
+The described mapping was implemented as a library named the Semantic Framework\footnote{The project repository is available at: https://github.com/NEUROINFORMATICS-GROUP-FAV-KIV-ZCU/Semantic-Framework}. It processes a~set of JavaBeans as an input and produces an ontology document as an output. We did not implement the Semantic Framework from scratch, but extended and integrated already existing tools. The core of the system is extended JenaBean~\citep{citeulike:JenaBean} that internally uses the Jena Framework~\citep{morningboat:jena16} to persist JavanBeans. Figure~\ref{fig:Semantic_Framework} shows the component diagram of the Semantic Framework. The first subcomponent is the extended JenaBean that reads and parses JavaBeans and related Java annotations. The output of the \emph{Extended JenaBean} component is an internal JenaBean model that is transferred to the second, \emph{Ontology Model Creator}, subcomponent. This subcomponent creates an ontology model using an \emph{Ontology Model Factory} and Jena API methods. This ontology model extends access to the statements in a RDF data collection by adding support for constructs that are expected to be in an ontology. However, all of the state information is still encoded as RDF triples and stored in the RDF model. The resulting ontology model (in the form of an ontology document) is further processed by the last subcomponent, \emph{OWL API}~\citep{DBLP:journals/semweb/HorridgeB11}, which provides the ontology model into a selected serialization format. The UML diagram describing the usage of the Semantic Framework is available in Figure~\ref{fig:Semantic_Framework_class_diagram}.
 
 \begin{table}
 
@@ -420,10 +467,7 @@ We selected the concepts that have a~class and/or property extent~\citep{BMEI_je
 
 \end{table}
 
-%\subsubsection{Implementation}
-%\label{Implementation}
 
-The described mapping was implemented as a library named the Semantic Framework\footnote{The project repository is available at: https://github.com/NEUROINFORMATICS-GROUP-FAV-KIV-ZCU/Semantic-Framework}. It processes a~set of JavaBeans as an input and produces an ontology document as an output. We did not implement the Semantic Framework from scratch, but extended and integrated already existing tools. The core of the system is extended JenaBean~\citep{citeulike:JenaBean} that internally uses the Jena Framework~\citep{morningboat:jena16} to persist JavanBeans. Figure~\ref{fig:Semantic_Framework} shows the component diagram of the Semantic Framework. The first subcomponent is the extended JenaBean that reads and parses JavaBeans and related Java annotations. The output of the \emph{Extended JenaBean} component is an internal JenaBean model that is transferred to the second, \emph{Ontology Model Creator}, subcomponent. This subcomponent creates an ontology model using an \emph{Ontology Model Factory} and Jena API methods. This ontology model extends access to the statements in a RDF data collection by adding support for constructs that are expected to be in an ontology. However, all of the state information is still encoded as RDF triples and stored in the RDF model. The resulting ontology model (in the form of an ontology document) is further processed by the last subcomponent, \emph{OWL API}~\citep{DBLP:journals/semweb/HorridgeB11}, which provides the ontology model into a selected serialization format. The UML diagram describing the usage of the Semantic Framework is available in Figure~\ref{fig:Semantic_Framework_class_diagram}.
 
 \begin{figure}
 % Use the relevant command to insert your figure file.
