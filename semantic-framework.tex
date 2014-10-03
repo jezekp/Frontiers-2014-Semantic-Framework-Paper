@@ -95,11 +95,11 @@ $^{2}$Faculty of Applied Sciences, Department of Computer Science and Engineerin
 
 %%% Leave the Abstract empty if your article falls under any of the following categories: Editorial Book Review, Commentary, Field Grand Challenge, Opinion or specialty Grand Challenge.
 \section{}
-  The goal of this article is to contribute to the efficiency of research in an electrophysiological domain by improving opportunities for describing semantics of structured electrophysiological data. The research efficiency can be, among other measures, expressed as an ability of data owners and data users to understand experimental data in a longer term. The appropriate semantic description of these data is then closely related to the successful long-term management and sharing of data. Improvement of data management and sharing requires compliance with the minimum standards for data formats and metadata structures. The abstract level of semantics used for describing such data formats and metadata structures, which is widely discussed in the community, has to be accompanied by selecting suitable semantic expressive means.
+  The goal of this article is to contribute to the efficiency of research in the electrophysiological domain by improving opportunities for describing semantics of structured electrophysiological data. The research efficiency can be, among other measures, expressed as an ability of data owners and data users to understand experimental data in a longer term. The appropriate semantic description of these data is then closely related to the successful long-term management and sharing of data. Improvement of data management and sharing requires compliance with the minimum standards for data formats and metadata structures. The abstract level of semantics used for describing such data formats and metadata structures, which is widely discussed in the community, has to be accompanied by selecting suitable semantic expressive means.
 
-  The article deals with and discusses two main current approaches in building semantic structures for metadata. It is the use of conventional data structures, repositories, and programming languages on one hand and the use of formal representations of ontologies, known from knowledge representation, such as description logics or semantic web languages on the other hand. Although knowledge engineering offers languages supporting richer semantic means of expression and technological advanced approaches, conventional data structures and repositories are still popular among developers, administrators and users because of their simplicity, overall intelligibility, and lower demands on technical equipment. The choice of conventional data sources and repositories, however, raises the question of how and where to add semantics that cannot be naturally expressed using them. As one of the possible solutions, this semantics can be added into the structures of the programming language that accesses and processes the underlying data.
+  The article deals with and discusses two main current approaches in building semantic structures for metadata. It is the use of conventional data structures, repositories, and programming languages on one hand and the use of formal representations of ontologies, known from knowledge representation, such as description logics or semantic web languages on the other hand. Although knowledge engineering offers languages supporting richer semantic means of expression and technological advanced approaches, conventional data structures and repositories are still popular among developers, administrators and users because of their simplicity, overall intelligibility, and lower demands on technical equipment. The choice of conventional data sources and repositories, however, raises the question of how and where to add semantics that cannot be naturally expressed using these conventional resources. As one of the possible solutions, this semantics can be added into the structures of the programming language that accesses and processes the underlying data.
 
-  To support this idea we introduced a software prototype that enables its users to add semantically richer expressions into a~Java object-oriented code. This approach does not burdensome users with additional demands on programming environment since reflective Java annotations were used as an entry for these expressions. Moreover, additional semantics need not to be written by the programmer directly to the code, but it can be collected from non-programmers using a graphic user interface. The mapping that allows the transformation of enriched Java code into the Semantic Web language OWL was proposed and implemented in a library named the Semantic Framework. This approach was validated by the integration of the Semantic Framework in the EEG/ERP Portal and by the subsequent registration of the EEG/ERP Portal in the Neuroscience Information Framework.
+  To support this idea we introduced a software prototype that enables its users to add semantically richer expressions into a~Java object-oriented code. This approach does not burdensome users with additional demands on programming environment since reflective Java annotations were used as an entry for these expressions. Moreover, additional semantics need not to be written by the programmer directly to the code, but it can be collected from non-programmers using a graphic user interface. The mapping that allows the transformation of the semantically enriched Java code into the Semantic Web language OWL was proposed and implemented in a library named the Semantic Framework. This approach was validated by the integration of the Semantic Framework in the EEG/ERP Portal and by the subsequent registration of the EEG/ERP Portal in the Neuroscience Information Framework.
 
 \tiny
  \keyFont{ \section{Keywords:} EEG/ERP Portal, electrophysiology, object-oriented code, ontology, Semantic Framework, Semantic Web} %All article types: you may provide up to 8 keywords; at least 5 are mandatory.
@@ -110,13 +110,13 @@ $^{2}$Faculty of Applied Sciences, Department of Computer Science and Engineerin
 
 Our research group specializes in research of brain electrical activity and operates a laboratory in which the techniques and methods of electroencephalography (EEG) and event related potentials (ERP) are widely used. In addition to the experimental work, which is mostly focused on recording and analysis of cognitive event related potentials, we are working on the development of the software and hardware infrastructure for research in electrophysiology~\citep{10.3389/fninf.2014.00020}. Our experimental work is typically very time consuming and vast amounts of experimental data are produced at various stages of processing from data recording to their final interpretation. Based on this experience, we know that the means supporting the semantic description of electrophysiological data and the software systems improving the storage, management and sharing of these data (at least within a~research group) contribute to long-term understanding of these data and significantly increase research efficiency. This became even more important when we decided to share our data, processing steps and workflows within a~wider community.
 
-The subjects of long-term preservation, quality and range of semantic description, and data sharing itself are broadly discussed in the community. A variety of experimental approaches, techniques and methods, targeted subjects, hardware and software infrastructures, etc. used during electrophysiological experiments lead to the accumulation of heterogeneous data in the domain. The semantics of these data means that they are accompanied by metadata that specify their meaning. Metadata can be seen as the links to a~specific dictionary, in which the described data are explained and defined, for example, by using a~plain text, sets of values or even formal logic. The richness and accuracy of the semantic content of these dictionaries determines the level of semantic description of data. Then the absence of well-defined metadata structures in addition to the absence of standardized and generally used data formats for raw data, are the most pressing difficulties in the domain (as described e.g. in~\citep{data-sharing-for-computational-neuroscience}).
+The subjects of long-term preservation of data, quality and range of their semantic description, and data sharing itself are broadly discussed in the community. A variety of experimental approaches, techniques and methods, targeted subjects, hardware and software infrastructures, etc. used during electrophysiological experiments lead to the accumulation of heterogeneous data in the domain. The semantics of these data means that they are accompanied by metadata that specify their meaning. Metadata can be seen as the links to a~specific dictionary, in which the described data are explained and defined, for example, by using a~plain text, sets of values or even formal logic. The richness and accuracy of the semantic content of these dictionaries determines the level of semantic description of data. Then the absence of well-defined metadata structures in addition to the absence of standardized and generally used data formats for raw data, are the most pressing difficulties in the domain (as described e.g. in~\citep{data-sharing-for-computational-neuroscience}).
 
-In the real world electrophysiological data are stored in numerous, often proprietary, data formats and annotated by metadata differently in both range and quality sense. Moreover, a number of sophisticated implementations of data repositories including file systems and databases of different types are available. Then the domain data are also annotated respecting limitations of the used implementations. If we take into account these conceptual and technological heterogeneities and not give up efforts to increase research efficiency in the field by sharing various computational resources such as raw data, metadata, processing methods and workflows among laboratories, then use a~readable data format, create a~suitable semantic description of data, and develop a~tool for the long-term management and sharing of data and metadata in the domain are the first important steps to achieve this complex goal.
+In the real world electrophysiological data are stored in numerous, often proprietary, data formats and annotated by metadata differently in both range and quality sense. Moreover, a number of sophisticated implementations of data repositories including file systems and databases of different types are available. Then the domain data are also annotated respecting limitations of the used implementations. If we take into account these conceptual and technological heterogeneities and not give up efforts to increase research efficiency in the field by sharing various computational resources such as raw data, metadata, processing methods and workflows among laboratories, then to use a~generally readable data format, create a~suitable semantic description of data, and develop a~tool for the long-term management and sharing of data and metadata in the domain are the first important steps to achieve this complex goal.
 
-However, a~higher level of data sharing requires compliance with the minimum standards for domain data and metadata and their structures. The content of these standards and an abstract level of such descriptions are currently broadly discussed in the community (e.g. within INCF~\citep{incf} data sharing activities) because a~well-specified content and appropriately chosen level of abstraction could bring real sharing opportunities in the domain. On the other hand, one must be careful not to discourage community researchers to provide data and metadata in standardized formats and structures by introducing them too abstract semantic descriptions. Although this topic and standardization efforts themselves are very important for the future of data sharing in the domain, their more extensive discussion is out of scope of this article. However, it was important to introduce them since they closely relate to a~more specific task (Section~\ref{Semantic_Framework}), the description of which forms the core of this article .
+However, a~higher level of data sharing requires compliance with the minimum standards for domain data and metadata and their structures. The content of these standards and an abstract level of such descriptions are currently broadly discussed in the community (e.g. within INCF~\citep{incf} data sharing activities) because a~well-specified content and appropriately chosen level of abstraction could bring real sharing opportunities in the domain. On the other hand, one must be careful not to discourage community researchers to provide data and metadata in some standardized formats and structures by introducing them too abstract semantic descriptions. Although this topic and standardization efforts themselves are very important for the future of data sharing in the domain, their more extensive discussion is out of scope of this article. However, it is important to introduce them since they are closely related to a~more specific task (Section~\ref{SemanticFramework}), the description of which forms the core of this article.
 
-Any proposed abstract level of the semantic description of domain metadata and their relationships has to be accompanied by selecting expressive means and subsequently by selecting technologies that promote data sharing. Currently there are two main approaches for building semantic structures for metadata. The first approach is to use conventional data models and structures and conventional programming languages providing data access. The second approach assumes the use of formal representations of ontologies, known from the knowledge representation field, such as description logic or Semantic Web languages, and,  eventually, reasoning provided by software agents. Discussions of these approaches and their practical applications have been kept for decades. They related mainly to expert systems in the past; currently difficulties and perspectives of the Semantic Web languages and technologies are discussed.
+Any proposed abstract level of the semantic description of domain metadata and their relationships has to be accompanied by selecting expressive means and subsequently by selecting technologies that promote data sharing. Currently there are two main approaches for building semantic structures for metadata. The first approach is to use conventional data models and structures and conventional programming languages providing data access. The second approach assumes the use of formal representations of ontologies, known from the knowledge representation field, such as description logic or Semantic Web languages and (eventually) reasoning provided by software agents. Discussions of these approaches and their practical applications have been kept for decades. They related mainly to expert systems in the past; currently difficulties and perspectives of the Semantic Web languages and technologies are discussed.
 
 The initial concept of the Semantic Web, as was introduced in~\citep{bernerslee2001semantic}, was based on artificial intelligence techniques; knowledge bases accessed via web interface served for automatic reasoning provided by software agents. However, this approach has been continuously changing since the years 2004--2005 and the Semantic Web started to be more viewed as a large distributed database. This perspective had two following fundamental aspects. The first one is known as the knowledge acquisition bottleneck; acquisition of knowledge is a time consuming process that is made usually by domain experts. As a result, the knowledge bases are rather small comparing to conventional data repositories. This bottleneck is currently even more visible in the context of big data collected from the increasing number and due to technical capabilities of hardware acquisition devices. The second aspect is related to the processing of the conventional data that in most cases does not mean producing entirely new data by reasoning. Data are supposed to be just queried and linked to other data. This view of data is one of the key concepts of linked data~\citep{linked-data}.
 
@@ -229,7 +229,7 @@ Concerning one-side transformations, these tools with common semantic expressivi
 The Semantic Object Framework (SOF)~\citep{SOF} utilizes embedded comments in source codes to describe semantic relationships between classes and attributes. The eClass~\citep{Web-Information-Representation} is a solution that changes Java syntax to embed semantic descriptions into the source code. These frameworks enrich the input object-oriented code by missing semantics using either embedded comments or changing the JavaBean syntax. However, the usa of such tools is difficult because it requires a modified compiler and Java interpreter.
 
 \subsection{Semantic Framework}
-\label{Semantic Framework}
+\label{SemanticFramework}
 
 Drawbacks and limits of the tested frameworks motivated us to introduce a software prototype that enables to add additional semantics into the Java object-oriented code that processes conventional data repositories. A mapping that enables transformation of this code into the Semantic Web language OWL was proposed and implemented as a library - the Semantic Framework presented in Section~\ref{Semantic_Framework}. This approach does not burdensome users with additional demands on programming environment since we used reflective Java annotations - metadata added to the Java source code and retrieved at run-time. Moreover, this additional semantics need not to be written by the programmer directly to the code, but it can be collected from non-programmers using a graphic user interface. The presented approach is discussed from performance (Section~\ref{Performance_evaluation}) and usability (Section~\ref{DISCUSSION}) perspectives. It was validated by integration of the Semantic Framework in the EEG/ERP Portal, together with its registration in the Neuroscience Information Framework (NIF).
 
@@ -272,7 +272,7 @@ public class Person {
     private int id;
     private String firstname;
     private List<ResearchGroup> researchGroups;
-}    
+}
 
 \end{lstlisting}
 
@@ -285,7 +285,7 @@ public class Person {
   <owl:Class rdf:ID="ResearchGroup">
     <semantic:javaclass>cz.zcu.kiv.ResearchGroup</semantic:javaclass>
   </owl:Class>
-  
+
   <owl:ObjectProperty rdf:ID="testedSubject">
     <rdfs:domain rdf:resource="&this;Experiment"/>
     <rdfs:range rdf:resource="&this;Person"/>
@@ -295,17 +295,17 @@ public class Person {
     <rdfs:domain rdf:resource="&this;Person"/>
     <rdfs:range rdf:resource="&this;ResearchGroup"/>
   </owl:ObjectProperty>
-  
+
   <owl:DatatypeProperty rdf:ID="firstname">
     <rdfs:domain rdf:resource="&this;Person"/>
     <rdfs:range rdf:resource="&xsd;string"/>
   </owl:DatatypeProperty>
-  
+
   <owl:DatatypeProperty rdf:ID="id">
     <rdfs:domain rdf:resource="&this;Person"/>
     <rdfs:range rdf:resource="&xsd;integer"/>
   </owl:DatatypeProperty>
- 
+
 
 \end{lstlisting}
 
@@ -355,7 +355,7 @@ public class Person {
     <owl:equivalentClass>
       <owl:Class rdf:about="http://cz.zcu.kiv/TestedSubject"/>
     </owl:equivalentClass>
-    
+
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:cardinality rdf:datatype="&xsd;int">1</owl:cardinality>
@@ -364,7 +364,7 @@ public class Person {
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    
+
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -382,7 +382,7 @@ public class Person {
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    
+
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:minCardinality rdf:datatype="&xsd;int">1</owl:minCardinality>
