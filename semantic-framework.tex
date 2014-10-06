@@ -285,11 +285,6 @@ public class Person {
     <semantic:javaclass>cz.zcu.kiv.ResearchGroup</semantic:javaclass>
   </owl:Class>
 
-  <owl:ObjectProperty rdf:ID="testedSubject">
-    <rdfs:domain rdf:resource="&this;Experiment"/>
-    <rdfs:range rdf:resource="&this;Person"/>
-  </owl:ObjectProperty>
-
   <owl:ObjectProperty rdf:ID="researchGroups">
     <rdfs:domain rdf:resource="&this;Person"/>
     <rdfs:range rdf:resource="&this;ResearchGroup"/>
