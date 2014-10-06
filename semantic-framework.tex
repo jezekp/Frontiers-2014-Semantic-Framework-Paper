@@ -457,11 +457,7 @@ The described mapping was implemented as a library named the Semantic Framework\
 \hline
 
 \end{tabular}
-
-
 \end{table}
-
-
 
 \begin{figure}
 % Use the relevant command to insert your figure file.
@@ -471,7 +467,6 @@ The described mapping was implemented as a library named the Semantic Framework\
 \caption{Component Diagram of the Semantic Framework. The Semantic Framework reads a list of input JavaBeans using an implemented reader based on Java Reflection API \citep{jlfalcone:sun:06}. This list passes through two parsers. The first one reads a JavaBean structure; the second one reads supplemented annotations. The parsers create an internal JenaBean representation. This representation is read by Jena API, which provides an ontology model processed by an OWL API. The OWL API implements existing OWL syntaxes and provides methods for serializing the ontology model.}
 \label{fig:Semantic_Framework}
 \end{figure}
-
 
 \begin{figure}
 \center
@@ -493,7 +488,7 @@ The described mapping was implemented as a library named the Semantic Framework\
 %\subsubsection{Experimental Verification}
 %\label{Experimental_Verification}
 
-The time complexity of the Semantic Framework was tested in the following way. Firstly, we prepared a set of instances of the class \emph{Experiment}. Then, we assigned instances of the classes \emph{Person}, \emph{Scenario}, \emph{Hardware} and \emph{Data} to each experiment. The class \emph{Person} was extended by the set of supported annotations from Table~\ref{tab:Java annotations to OWL mapping}. The performance tests were run ten times and the result was calculated as an average of all program runs. The time complexity of the transformational process is linear with respect to the number of instances. The tested syntaxes are functionally equivalent; they differ only in the format of the serialized output document~\citep{Wurlitzer:Beckett:04:RSS}.
+The time complexity of the Semantic Framework library was tested in the following way. Firstly, we prepared a~set of instances of the class \emph{Experiment}. Then, we assigned instances of the classes \emph{Person}, \emph{Scenario}, \emph{Hardware}, and \emph{Data} to each instance of the class \emph{Experiment}. The class \emph{Person} was extended by the set of supported annotations from Table~\ref{tab:Java annotations to OWL mapping}. The performance tests were run ten times and the result was calculated as an average of all program runs. The time complexity of the transformational process was linear with respect to the number of instances. All the tested syntaxes are functionally equivalent; they differ only in the format of the serialized output document~\citep{Wurlitzer:Beckett:04:RSS}.
 
 %\begin{figure}
 %  \includegraphics[width=18cm]{result}
@@ -508,24 +503,24 @@ The time complexity of the Semantic Framework was tested in the following way. F
 %\subsubsection{Experimental Ontology}
 %\label{Experimental_Ontology}
 
-We defined a simple ontology that describes the experimental work in our laboratory. Semantically, it is a~modified subset of the NEMO ontology with added terms describing an experimental protocol and restrictions during an experimental session. The ontology structure corresponds to metadata collected during experiments. These metadata are divided into several semantic groups:
+We defined a simple ontology describing the experimental work in our laboratory. Semantically, it is a~modified subset of the NEMO ontology with added terms describing an experimental protocol and restrictions during an experimental session. The ontology structure corresponds to metadata collected during experiments. These metadata are divided into several semantic groups:
 
 \begin{itemize}
 \item Activity - describes a predefined experimental protocol. It includes information about audio and/or video stimulation, instructions given to tested subjects, detailed descriptions of stimuli (target vs. non-target, timing), etc.
 \item Environment - describes surrounding conditions such as weather, daytime or room temperature.
 \item Tested subject - includes information about the tested subject such as laterality, education, age, gender, diseases, and disability.
-\item Hardware equipment - describes e.g. the type, producer and serial number of the hardware used.
-\item Software equipment - describes software used during the experiment. It includes e.g. the name of the software, the version and the producer, and configuration files if they are used.
-\item Used electrodes - describes the type, impedance, location, the system used and fixation of the electrodes.
+\item Hardware equipment - describes e.g. the type, producer, and serial number of the hardware used.
+\item Software equipment - describes software used during the experiment. It includes e.g. the name of the software, version, manufacturer, and configuration files if they are used.
+\item Used electrodes - describes the type, impedance, location, used system, and fixation of the electrodes.
 \item Data digitalization - describes a set of parameters that influence conversion of data using a specific analogue-digital converter. It includes filtration, sampling frequency, and band-pass.
-\item Signal analysis - describes basic analytic steps during the EEG/ERP signal processing. It includes the determination of the length of the pre- and post-stimulus part of the signal, the number of epochs, and the verbal description of the signal-processing procedure.
-\item Data presentation - describes experimental results or assumptions needed to reproduce an experiment. It includes averaged ERP waves (images of averaged waves), grand averages (images of grand averages), evolution of the ERP signal in time and space (images showing the ERP signal propagation over the scalp), waves description (description of well-known or new waves formed during the study), and the link to all raw experimental data.
+\item Signal analysis - describes basic analytic steps during the EEG/ERP signal processing. It includes the determination of the length of the pre- and post-stimulus part of the signal, number of epochs, and text description of the signal-processing procedure.
+\item Data presentation - describes experimental results or assumptions needed to reproduce an experiment. It includes averaged ERP waves (images of averaged waves), grand averages (images of grand averages), evolution of the ERP signal in time and space (images showing the ERP signal propagation over the scalp), waves description (description of well-known or new waves formed during the study), and link to raw experimental data.
 \item Signal artifact - contains information describing a compensation method that prevents formation of artifacts. When a method for removing artifacts is used, its description is also placed there. When some artifact totally degrades the signal, the experimenter can define conditions when it is possible to assume that the signal is totally useless.
 \end{itemize}
 
-This ontology was built within the development of the EEG/ERP Portal~\citep{ISI:000306821100004}, a~web application~\citep{eegdatabase} for the storage, long-term management and sharing of electrophysiology data. The data layer of the Portal is implemented using a relational database (Oracle 11g) and POJOs. An object-relational mapping (ORM) is ensured by the Hibernate framework~\citep{Bauer:2006:JPH:1212283}. The internal structure (classes and their relationships, annotations) of the data layer is implemented according to the defined ontology. The application layer was developed using the Spring Framework; the presentation layer uses Apache Wicket. Upload of data and metadata is ensured via a set of predefined web forms.
+This simple ontology was built within the development of the EEG/ERP Portal (EEGBase)~\citep{ISI:000306821100004}, which is a~web application~\citep{eegdatabase} for the storage, long-term management, and sharing of electrophysiology data. The data layer of the EEG/ERP Portal is implemented using a relational database (Oracle 11g) and POJOs. An object-relational mapping (ORM) is ensured by the Hibernate framework~\citep{Bauer:2006:JPH:1212283}. The internal structure (classes and their relationships, annotations) of the data layer is implemented according to the defined ontology. The application layer was developed using the Spring Framework; the presentation layer uses Apache Wicket. Upload of data and metadata is ensured via a set of predefined web forms.
 
-The Semantic Framework was integrated into the EEG/ERP Portal (Figure~\ref{fig:Semantic_Framework_Integration_in_EEG_ERP_Portal}). The internal logic\footnote{Spring MVC is used. It practically implements a Model-View-Controller design pattern.} calls a Semantic Framework API (the UML diagram describing the Semantic module API in the EEG/ERP Portal is shown in Figure~\ref{fig:Semantic_Framework_Integration}) using a built-in timer at regular intervals; the ontology document is stored in a temporary file that is further serialized into a~required syntax. Syntaxes \emph{RDF/XML}, \emph{OWL/XML}, \emph{RDF/XML-ABBREV}, \emph{N-TRIPLE}, \emph{TURTLE}, \emph{N3}, \emph{N3-PP}, \emph{N3-PLAIN}, and \emph{N3-TRIPLE} are currently supported. The \emph{SemanticMultiController} is listening on a specific URL with a \emph{GET} parameter. For instance, when a reasoner visits the URL \emph{http://eegdatabase.kiv.zcu.cz/seman tic/getOntology.html?type=turtle}, it obtains the OWL document in the \emph{turtle} syntax. Thus this approach enables us to generate an experimental ontology from stored experiments. The output ontology document is valid according to W3C specification. It can be proved by its visualization in Prot\'{e}ge (shown in Figure~\ref{fig:visualized_portal_ontology}).
+The Semantic Framework was integrated into the EEG/ERP Portal (Figure~\ref{fig:Semantic_Framework_Integration_in_EEG_ERP_Portal}). The internal logic\footnote{Spring MVC is used. It practically implements a~Model-View-Controller design pattern.} calls a Semantic Framework API (the UML diagram describing the Semantic module API in the EEG/ERP Portal is shown in Figure~\ref{fig:Semantic_Framework_Integration}) using a~built-in timer at regular intervals. The created ontology document is stored in a temporary file that is further serialized into a~required syntax. Syntaxes \emph{RDF/XML}, \emph{OWL/XML}, \emph{RDF/XML-ABBREV}, \emph{N-TRIPLE}, \emph{TURTLE}, \emph{N3}, \emph{N3-PP}, \emph{N3-PLAIN}, and \emph{N3-TRIPLE} are currently supported. The \emph{SemanticMultiController} is listening on a specific URL with the \emph{GET} parameter. For instance, when a~reasoner visits the URL \emph{http://eegdatabase.kiv.zcu.cz/seman tic/getOntology.html?type=turtle}, it obtains the OWL document in the \emph{turtle} syntax. The output ontology document is valid according to W3C specification. It can be proved by its visualization in Prot\'{e}ge (shown in Figure~\ref{fig:visualized_portal_ontology}).
 
 %\subsubsection{Implementation within EEG/ERP Portal}
 %\label{Implementation-within-EEG-ERP-Portal}
@@ -536,26 +531,26 @@ The Semantic Framework was integrated into the EEG/ERP Portal (Figure~\ref{fig:S
 \begin{figure}
 \center
   \includegraphics[width=12cm]{EEG_ERP_Portal_Semantic_Framework_Integration}
-\caption{Integration of the Semantic Framework in the EEG/ERP Portal. The EEG/ERP Portal is a layered architecture designed according to a Model-View-Controller design pattern. The data layer obtains Javabeans from a relational database. The application layer is controlled by the set of \emph{Controllers} which process user requests originated from a web browser. The specific controller (\emph{Semantic Controller}) processes ontology document requests. This controller calls the integrated Semantic Framework through \emph{Semantic Factory} and returns a serialized ontology document to the user's web browser.}
+\caption{Integration of the Semantic Framework in the EEG/ERP Portal. The EEG/ERP Portal is a~layered architecture designed according to a Model-View-Controller design pattern. The data layer obtains Javabeans from a~relational database. The application layer is controlled by the set of \emph{Controllers} which process user requests originated from a~web browser. The specific controller (\emph{Semantic Controller}) processes ontology document requests. This controller calls the integrated Semantic Framework through \emph{Semantic Factory} and returns a serialized ontology document to the user's web browser.}
 \label{fig:Semantic_Framework_Integration_in_EEG_ERP_Portal}
 \end{figure}
 
 \begin{figure}
 \center
   \includegraphics[width=17cm]{SF_integration}
-\caption{Semantic Framework Integration. A user (e.g. OWL reasoner) calls the \emph{SemanticMulticontroller}. This controller has two methods, \emph{getOntology} and \emph{getOntologyOwlApi}. A~required output syntax is passed to the methods as a part of the HttpServletRequest parameter. The Semantic Framework is called through the \emph{SemanticFactory} Interface.}
+\caption{Semantic Framework Integration. A~user (e.g. OWL reasoner) works with the \emph{SemanticMulticontroller} interface. This controller has two methods, \emph{getOntology} and \emph{getOntologyOwlApi}. A~required output syntax is passed to the methods as a part of the HttpServletRequest parameter. The Semantic Framework is called within the methods of the implemented \emph{SemanticFactory} Interface.}
 \label{fig:Semantic_Framework_Integration}
 \end{figure}
 
 %\subsubsection{Registration within the Neuroscience Information Framework}
 %\label{Registration_within_nif}
 
-The generated OWL documents are typically used when registering the EEG/ERP Portal with other providers of neuroinformatics services. We successfully used the Neuroscience Informational Framework (NIF)~\citep{NIF-Neuroinformatics}. The NIF framework provides a unified interface for accessing neurophysiological data through resources described by ontology web languages~\citep{springerlink:10.1007/s12021-008-9033-y}. NIF uses a~proprietary framework \emph{DISCO} \citep{Marenco2010}. It is an XML-based script containing a static description of the registered resource. The dynamic content is accessed through a generated ontology. The structure of metadata instances is stored in an \emph{Interoperability XML} file that is a part of the DISCO protocol. The interoperability file is stored in the root directory of the EEG/ERP Portal together with generated DISCO files. The NIF framework reloads it at regular intervals. It enables dynamic access to the content of the EEG/ERP Portal. Figure \ref{fig:NIF_registry_preview} shows experiments listed through the NIF registry. Currently more then 100 experiments are available in the NIF registry and new ones are gradually being added.
+The generated OWL documents are typically used when registering the EEG/ERP Portal with other providers of neuroinformatics services. We successfully used the Neuroscience Informational Framework (NIF)~\citep{NIF-Neuroinformatics}. The NIF framework provides a unified interface for accessing neurophysiological data through resources described by ontology web languages~\citep{springerlink:10.1007/s12021-008-9033-y}. NIF uses a~proprietary framework \emph{DISCO} \citep{Marenco2010}. It is an XML-based script containing a static description of the registered resource. The dynamic content is accessed through a generated ontology. The structure of metadata instances is stored in an \emph{Interoperability XML} file that is a part of the DISCO protocol. The interoperability file is stored in the root directory of the EEG/ERP Portal together with generated DISCO files. The NIF framework reloads it at regular intervals. It enables dynamic access to the content of the EEG/ERP Portal. Figure \ref{fig:NIF_registry_preview} shows experiments listed through the NIF registry. Currently more then 100 experiments are available in the NIF registry and new ones are being gradually added.
 
 \begin{figure}
 \center
   \includegraphics[width=17.5cm]{protege_loaded_ontology}
-\caption{Prot\'{e}ge Visualization. The left column shows ontology classes. All classes are subclasses of a superclass \emph{Thing}. The right window shows the class \emph{Person}. The class annotations (e.g. \emph{Comment} or \emph{EquivalentClass}), properties annotations (e.g. \emph{researchGroup} - each person is a member of at least one research group) and class instances are transformed from the enriched JavaBean (see Listing \ref{Annotated_Java_Bean_Example}).}
+\caption{Prot\'{e}ge Visualization. The left column shows ontology classes. All classes are subclasses of a~superclass \emph{Thing}. The right window shows the class \emph{Person}. The class descriptions (\emph{EquivalentClass}) and properties  (e.g. \emph{researchGroups} - each person is a~member of at least one research group) are transformed from the enriched JavaBean (see Listing \ref{Annotated_Java_Bean_Example}). The class instances (e.g. Person_0) are originally obtained from the relational database.}
 \label{fig:visualized_portal_ontology}
 \end{figure}
 
