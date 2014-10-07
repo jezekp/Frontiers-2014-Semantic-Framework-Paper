@@ -246,15 +246,15 @@ Java stores data in JavaBeans\footnote{JavaBeans, as reusable components, are na
 
 \emph{The process is the transformation of a set of JavaBeans J to an ontology O that satisfies:}
 
-\emph{$\forall$ $J{}_{\text{i}}$ $\exists$ OWL class $OC{}_{\text{i}}$ $\in$ O}.
+\emph{$\forall$ $J{}_{\text{i}}$ $\exists$ $OC{}_{\text{i}}$ $\in$ O; $OC{}_{\text{i}}$ is OWL class; i $\in$ \{1..n\}; n is number of JavaBeans}.
 
-\emph{$\forall$  $J{}_{\text{j}}$ is a superclass of $J{}_{\text{i}}$ $\exists$ OWL class $OC{}_{\text{j}}$ is a superclass of OWL class $OC{}_{\text{i}}$  $\in$  O}.
+\emph{$\forall$  $J{}_{\text{i}}$ is a superclass of $J{}_{\text{j}}$ $\exists$ $OC{}_{\text{i}}$ is a superclass of $OC{}_{\text{j}}$  $\in$  O; $OC{}_{\text{i}}$ is OWL class; i $\in$ \{1..n\}; n is number of JavaBeans; j $\in$ \{1..m\}; m is number of subclasses in $J{}_{\text{i}}$}.
 
-\emph{$\forall$ field $\in$ $Jf{}_{\text{i}}$ $\exists$  class $OC{}_{\text{i}}$ $\in$  O; its extent is a DataType property $\in$  O $\Leftrightarrow$ $Jf{}_{\text{i}}$ extent is an atomic type}.
+\emph{$\forall$ $Jf{}_{\text{j}}$ $\in$  $\exists$  $OC{}_{\text{i}}$ $\in$  O; its extent is a DataType property $\in$  O $\Leftrightarrow$ $Jf{}_{\text{j}}$ extent is an atomic type; $OC{}_{\text{i}}$ is OWL class; $Jf{}_{\text{j}}$ is field $\in$ J; i $\in$ \{1..n\}; n is number of OC; j $\in$ \{1..m\}; m is number of subclasses of Jf}.
 
-\emph{$\forall$ field $\in$ $Jf{}_{\text{i}}$ $\exists$  class $OC{}_{\text{i}}$ $\in$ O; its extent is an Object property $\Leftrightarrow$ $Jf{}_{\text{i}}$ extent is a class $\in$ $J{}_{\text{i}}$}.
+\emph{$\forall$  $\in$ $Jf{}_{\text{j}}$ $\exists$ $OC{}_{\text{i}}$ $\in$ O; its extent is an Object property $\Leftrightarrow$ $Jf{}_{\text{j}}$ extent is a class $\in$ $J{}_{\text{i}}$ $Jf{}_{\text{j}}$ is field $\in$ J; i $\in$ \{1..n\}; n is number of $OC{}_{\text{i}}$; j $\in$ \{1..m\}; m is number of subclasses of $Jf{}_{\text{j}}$}.
 
-\emph{$\forall$ instance of  $J{}_{\text{i}}$ $\bigwedge$ $\forall$ field $Jf{}_{\text{ij}}$  $\exists$ OWL literal $OL{}_{\text{ij}}$ $\in$ O $\hat{=}$ field $\in$ $Jf{}_{\text{ij}}$}.
+\emph{$\forall$ $J{}_{\text{i}}$ $\bigwedge$ $\forall$ $Jf{}_{\text{ij}}$  $\exists$ $OL{}_{\text{ij}}$ $\in$ O $\hat{=}$ field $\in$ $Jf{}_{\text{ij}}$; $J{}_{\text{i}}$ is instance of $Jf{}_{\text{j}}$; $Jf{}_{\text{ij}}$ is field in $J{}_{\text{i}}$;  i $\in$ \{1..n\}; n is number of JavaBeans; j $\in$ \{1..m\}; m is number of fields in $J{}_{\text{i}}$; $OL{}_{\text{ij}}$ is OWL literal}.
 
 \end{definition}
 
@@ -315,9 +315,9 @@ The theoretical extraction of JavaBeans annotations and their transformations to
 
 \emph{The process is the transformation of a set of Java annotations JA to a resources R  in the ontology O that satisfies:}
 
-\emph{$\forall$ $JA{}_{\text{i}}$ $\exists$ OWL class $R{}_{\text{i}}$ $\in$ O $\Rightarrow$ $JA{}_{\text{i}}$ $\in$ a class annotation}.
+\emph{$\forall$ $JA{}_{\text{i}}$ $\exists$ OWL class $R{}_{\text{i}}$ $\in$ O $\Rightarrow$ $JA{}_{\text{i}}$ $\in$ a class annotation; i$\in$ \{1..n\}; n is number of Java class annotations}.
 
-\emph{$\forall$ $JA{}_{\text{i}}$ $\exists$ OWL property $R{}_{\text{i}}$ $\in$ O $\Rightarrow$ $JA{}_{\text{i}}$ $\in$ a property annotation}.
+\emph{$\forall$ $JA{}_{\text{i}}$ $\exists$ OWL property $R{}_{\text{i}}$ $\in$ O $\Rightarrow$ $JA{}_{\text{i}}$ $\in$ a property annotation; i$\in$ \{1..n\}; n is number of Java property annotations}.
 
 \end{definition}
 
