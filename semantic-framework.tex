@@ -248,13 +248,13 @@ Java stores data in JavaBeans\footnote{JavaBeans, as reusable components, are na
 
 \emph{$\forall$ $J{}_{\text{i}}$ $\exists$ $OC{}_{\text{i}}$ $\in$ O; $OC{}_{\text{i}}$ is OWL class; i $\in$ \{1..n\}; n is number of JavaBeans}.
 
-\emph{$\forall$  $J{}_{\text{i}}$ is a superclass of $J{}_{\text{j}}$ $\exists$ $OC{}_{\text{i}}$ is a superclass of $OC{}_{\text{j}}$  $\in$  O; $OC{}_{\text{i}}$ is OWL class; i $\in$ \{1..n\}; n is number of JavaBeans; j $\in$ \{1..m\}; m is number of subclasses in $J{}_{\text{i}}$}.
+\emph{$\forall$  $J{}_{\text{i}}$ is a superclass of $J{}_{\text{j}}$ $\exists$ $OC{}_{\text{i}}$ is a superclass of $OC{}_{\text{j}}$  $\in$  O; $OC{}_{\text{i}}$ is OWL class; i $\in$ \{1..n\}; n is number of JavaBeans; j $\in$ \{1..m\}; m is number of subclasses $\in$ $J{}_{\text{i}}$}.
 
-\emph{$\forall$ $Jf{}_{\text{j}}$ $\in$  $\exists$  $OC{}_{\text{i}}$ $\in$  O; its extent is a DataType property $\in$  O $\Leftrightarrow$ $Jf{}_{\text{j}}$ extent is an atomic type; $OC{}_{\text{i}}$ is OWL class; $Jf{}_{\text{j}}$ is field $\in$ J; i $\in$ \{1..n\}; n is number of OC; j $\in$ \{1..m\}; m is number of subclasses of Jf}.
+\emph{$\forall$ $Jf{}_{\text{j}}$ $\exists$  $OC{}_{\text{i}}$ $\in$  O; its extent is a DataType property $\in$  O $\Leftrightarrow$ $Jf{}_{\text{j}}$ extent is an atomic type; $OC{}_{\text{i}}$ is OWL class; $Jf{}_{\text{j}}$ is field $\in$  $J{}_{\text{i}}$; i $\in$ \{1..n\}; n is number of OC; j $\in$ \{1..m\}; m is number of fields $\in$ $J{}_{\text{i}}$}.
 
-\emph{$\forall$  $\in$ $Jf{}_{\text{j}}$ $\exists$ $OC{}_{\text{i}}$ $\in$ O; its extent is an Object property $\Leftrightarrow$ $Jf{}_{\text{j}}$ extent is a class $\in$ $J{}_{\text{i}}$ $Jf{}_{\text{j}}$ is field $\in$ J; i $\in$ \{1..n\}; n is number of $OC{}_{\text{i}}$; j $\in$ \{1..m\}; m is number of subclasses of $Jf{}_{\text{j}}$}.
+\emph{$\forall$  $Jf{}_{\text{j}}$ $\exists$ $OC{}_{\text{i}}$ $\in$ O; its extent is an Object property $\Leftrightarrow$ $Jf{}_{\text{j}}$ extent is a class $\in$ $J{}_{\text{i}}$ $Jf{}_{\text{j}}$ is field $\in$ J; i $\in$ \{1..n\}; n is number of $OC{}_{\text{i}}$; j $\in$ \{1..m\}; m is number of fields $\in$ $J{}_{\text{i}}$}.
 
-\emph{$\forall$ $J{}_{\text{i}}$ $\bigwedge$ $\forall$ $Jf{}_{\text{ij}}$  $\exists$ $OL{}_{\text{ij}}$ $\in$ O $\hat{=}$ field $\in$ $Jf{}_{\text{ij}}$; $J{}_{\text{i}}$ is instance of $Jf{}_{\text{j}}$; $Jf{}_{\text{ij}}$ is field in $J{}_{\text{i}}$;  i $\in$ \{1..n\}; n is number of JavaBeans; j $\in$ \{1..m\}; m is number of fields in $J{}_{\text{i}}$; $OL{}_{\text{ij}}$ is OWL literal}.
+\emph{$\forall$ $J{}_{\text{inst}}$ of $J{}_{\text{i}}$ $\bigwedge$ $\forall$ $Jf{}_{\text{ij}}$  $\exists$ $OL{}_{\text{ij}}$ $\in$ O $\hat{=}$ field $\in$ $Jf{}_{\text{ij}}$; $J{}_{\text{inst}}$ is instance of $J{}_{\text{i}}$; $Jf{}_{\text{ij}}$ is field in $J{}_{\text{i}}$;  i $\in$ \{1..n\}; n is number of JavaBeans; j $\in$ \{1..m\}; m is number of fields $\in$ $J{}_{\text{i}}$; $OL{}_{\text{ij}}$ is OWL literal}.
 
 \end{definition}
 
