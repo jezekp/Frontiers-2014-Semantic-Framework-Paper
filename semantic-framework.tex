@@ -275,7 +275,7 @@ public class Person {
 
 \end{lstlisting}
 
-\begin{lstlisting}[label=OWL_individual_Instance,caption=OWL Individual Instance]
+\begin{lstlisting}[label=OWL_individual_Instance,caption=OWL Individual]
 
   <owl:Class rdf:ID="Person">
     <semantic:javaclass>cz.zcu.kiv.Person</semantic:javaclass>
@@ -323,7 +323,7 @@ The theoretical extraction of JavaBeans annotations and their transformations to
 
 An example of using annotations is given in Listing~\ref{Annotated_Java_Bean_Example}. The class \emph{Person} has attributes \emph{firstname} and \emph{researchGroups} as defined in Listing~\ref{Java_class_property_Definition}. Moreover, the attribute \emph{dateofBirth} is added. The \emph{firstname} attribute is defined with a~value that is get from the value constraint \emph{GivenNames} by using the \emph{@SomeValuesFrom} annotation. The attribute \emph{dateofBirth} is defined with cardinality equal to 1 and the attribute \emph{researchGroups} is defined with minimum cardinality equal to 1. In addition, the class \emph{Person} is defined as equivalent to the class \emph{TestedSubject} using the annotation \emph{EquivalentClass}. The serialization of this JavaBean is shown in Listing~\ref{Annotated_Java_Bean_OWL_Serialization}. The class \emph{Person} is a subclass of \emph{owl:cardinality}, \emph{owl:someValuesFrom} and \emph{owl:minCardinality} OWL restrictions.
 
-\begin{lstlisting}[label=Annotated_Java_Bean_Example,caption=Annotated Java Bean Example]
+\begin{lstlisting}[label=Annotated_Java_Bean_Example,caption=Annotated Java Bean]
 package cz.zcu.kiv;
 
 @EquivalentClass("http://cz.zcu.kiv/TestedSubject")
@@ -344,7 +344,7 @@ public class Person {
 \end{lstlisting}
 
 
-\begin{lstlisting}[label=Annotated_Java_Bean_OWL_Serialization,caption=Annotated Java Bean OWL Serialization, escapechar=@]
+\begin{lstlisting}[label=Annotated_Java_Bean_OWL_Serialization,caption=OWL Serialization of Annotated Java Bean , escapechar=@]
 <owl:Class rdf:ID="Person">
     <owl:equivalentClass>
       <owl:Class rdf:about="http://cz.zcu.kiv/TestedSubject"/>
