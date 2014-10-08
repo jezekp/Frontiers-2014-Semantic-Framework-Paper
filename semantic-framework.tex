@@ -242,7 +242,7 @@ Java stores data in JavaBeans\footnote{JavaBeans, as reusable components, are na
 
 \begin{definition}
 \label{def:JavaBean structure extraction process}
-(Extraction process from a JavaBean structure)
+(Extraction process from a~JavaBean structure)
 
 \emph{The process is the transformation of a~set of JavaBeans J to an ontology O that satisfies:}
 
@@ -250,11 +250,11 @@ Java stores data in JavaBeans\footnote{JavaBeans, as reusable components, are na
 
 \emph{$\forall$  $J{}_{\text{i}}$ that is a~superclass of $J{}_{\text{j}}$ $\exists$ $OC{}_{\text{i}}$ that is a~superclass of $OC{}_{\text{j}}$  $\in$  O; $OC$ is an OWL class; i $\in$ \{1..n\}; n is the number of JavaBeans; j $\in$ \{1..m\}; m is the number of $J{}_{\text{i}}$ subclasses }.
 
-\emph{$\forall$ $Jf{}_{\text{j}}$ $\exists$  $OC{}_{\text{i}}$ $\in$  O; its $OC{}_{\text{i}}$ extent is a~DataType property $\in$  O $\Leftrightarrow$ $Jf{}_{\text{j}}$ is an atomic type; $OC{}_{\text{i}}$ is an OWL class; $Jf{}_{\text{j}}$ is field $\in$  $J{}_{\text{i}}$; i $\in$ \{1..n\}; n is the number of OC; j $\in$ \{1..m\}; m is the number of $J{}_{\text{i}}$ fields}.
+\emph{$\forall$ $Jf{}_{\text{j}}$ $\exists$  $OC{}_{\text{i}}$ $\in$  O; its $OC{}_{\text{i}}$ extent is a~DataType property $\in$  O $\Leftrightarrow$ $Jf{}_{\text{j}}$ is an atomic type field of JavaBean; $OC{}_{\text{i}}$ is an OWL class; $Jf{}_{\text{j}}$ is a~field of JavaBean; i $\in$ \{1..n\}; n is the number of OWL classes; j $\in$ \{1..m\}; m is the number of $J{}_{\text{i}}$ fields}.
 
-\emph{$\forall$  $Jf{}_{\text{j}}$ $\exists$ $OC{}_{\text{i}}$ $\in$ O; its  $OC{}_{\text{i}}$ extent is an Object property $\Leftrightarrow$ $Jf{}_{\text{j}}$ is a~class $\in$ $J{}_{\text{i}}$ $Jf{}_{\text{j}}$ is field $\in$ J; i $\in$ \{1..n\}; n is the number of $OC{}_{\text{i}}$; j $\in$ \{1..m\}; m is the number of $J{}_{\text{i}}$ fields}.
+\emph{$\forall$  $Jf{}_{\text{j}}$ $\exists$ $OC{}_{\text{i}}$ $\in$ O; its  $OC{}_{\text{i}}$ extent is an Object property $\Leftrightarrow$ $Jf{}_{\text{j}}$ is an object type field of JavaBean; i $\in$ \{1..n\}; n is the number of OWL classes; j $\in$ \{1..m\}; m is the number of JavaBean fields}.
 
-\emph{$\forall$ $J{}_{\text{inst}}$ $\in$  $J{}_{\text{i}}$ $\bigwedge$ $\forall$ $Jf{}_{\text{ij}}$  $\exists$ $OL{}_{\text{ij}}$ $\in$ O $\hat{=}$ $Jf{}_{\text{ij}}$ $\in$ $J{}_{\text{i}}$; $J{}_{\text{inst}}$ is instance of $J{}_{\text{i}}$; $Jf{}_{\text{ij}}$ is field $\in$ $J{}_{\text{i}}$;  i $\in$ \{1..n\}; n is the number of JavaBeans; j $\in$ \{1..m\}; m is the number of $J{}_{\text{i}}$ fields; $OL{}_{\text{ij}}$ is an OWL literal}.
+\emph{$\forall$ $J{}_{\text{inst}}$ of  $J{}_{\text{i}}$ $\bigwedge$ $\forall$ $Jf{}_{\text{ij}}$  $\exists$ $OL{}_{\text{ij}}$ $\in$ O so that $OL{}_{\text{ij}}$ $\hat{=}$ $Jf{}_{\text{ij}}$; $J{}_{\text{inst}}$ is an instance of $J{}_{\text{i}}$; $Jf{}_{\text{ij}}$ is a~field of $J{}_{\text{i}}$;  i $\in$ \{1..n\}; n is the number of JavaBeans; j $\in$ \{1..m\}; m is the number of $J{}_{\text{i}}$ fields; $OL{}_{\text{ij}}$ is an OWL literal}.
 
 \end{definition}
 
